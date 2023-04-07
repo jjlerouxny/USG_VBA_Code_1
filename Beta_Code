@@ -1,6 +1,6 @@
 Sub CreateWorksheetsForTags()
     Dim keywordArray As Variant
-    keywordArray = Array("GN", "IS", "OP", "CR", "AZ")
+    keywordArray = Array("GN", "GM", "IN", "CR", "BC", "SS", "JP", "ST", "DL", "CD", "AB", "VU", "VB")
     
     Dim i As Long
     For i = LBound(keywordArray) To UBound(keywordArray)
