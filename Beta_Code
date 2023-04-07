@@ -1,0 +1,27 @@
+Sub CreateWorksheetsForTags()
+    Dim keywordArray As Variant
+    keywordArray = Array("GN", "IS", "OP", "CR", "AZ")
+    
+    Dim i As Long
+    For i = LBound(keywordArray) To UBound(keywordArray)
+        Dim keyword As String
+        keyword = keywordArray(i)
+        
+        Dim header As Range
+        For Each header In Range("1:1")
+            If InStr(header.Value, keyword) > 0 Then
+                Dim lastColumn As Long
+                lastColumn = Cells(header.Row, Columns.Count).End(xlToLeft).Column
+                
+                Dim copyRange As Range
+                Set copyRange = Range(header.Offset(1), Cells(Rows.Count, lastColumn).End(xlUp))
+                
+                Dim newWorksheet As Worksheet
+                Set newWorksheet = ThisWorkbook.Worksheets.Add(after:=Worksheets(Worksheets.Count))
+                newWorksheet.Name = keyword
+                
+                copyRange.Copy newWorksheet.Range("A1")
+            End If
+        Next header
+    Next i
+End Sub
